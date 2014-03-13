@@ -1,0 +1,433 @@
+﻿<Page
+    x:Class="LahoreAnswers.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LahoreAnswers"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+	<Page.Resources>
+		<Style x:Key="searchbox" TargetType="TextBox">
+			<Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinWidth}"/>
+			<Setter Property="MinHeight" Value="{ThemeResource TextControlThemeMinHeight}"/>
+			<Setter Property="Foreground" Value="{ThemeResource TextBoxForegroundThemeBrush}"/>
+			<Setter Property="Background" Value="{ThemeResource TextBoxBackgroundThemeBrush}"/>
+			<Setter Property="BorderBrush" Value="{ThemeResource TextBoxBorderThemeBrush}"/>
+			<Setter Property="SelectionHighlightColor" Value="{ThemeResource TextSelectionHighlightColorThemeBrush}"/>
+			<Setter Property="BorderThickness" Value="{ThemeResource TextControlBorderThemeThickness}"/>
+			<Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+			<Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+			<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+			<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+			<Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+			<Setter Property="Padding" Value="{ThemeResource TextControlThemePadding}"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="TextBox">
+						<Grid>
+							<Grid.Resources>
+								<Style x:Name="DeleteButtonStyle" TargetType="Button">
+									<Setter Property="Template">
+										<Setter.Value>
+											<ControlTemplate TargetType="Button">
+												<Grid Width="124">
+													<VisualStateManager.VisualStateGroups>
+														<VisualStateGroup x:Name="CommonStates">
+															<VisualState x:Name="Normal"/>
+															<VisualState x:Name="PointerOver">
+																<Storyboard>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BackgroundElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPointerOverBackgroundThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPointerOverBorderThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="GlyphElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPointerOverForegroundThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																</Storyboard>
+															</VisualState>
+															<VisualState x:Name="Pressed">
+																<Storyboard>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BackgroundElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPressedBackgroundThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPressedBorderThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="GlyphElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPressedForegroundThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																</Storyboard>
+															</VisualState>
+															<VisualState x:Name="Disabled">
+																<Storyboard>
+																	<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundElement"/>
+																	<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BorderElement"/>
+																</Storyboard>
+															</VisualState>
+														</VisualStateGroup>
+													</VisualStateManager.VisualStateGroups>
+													<Border x:Name="BorderElement" BorderBrush="{ThemeResource TextBoxButtonBorderThemeBrush}" BorderThickness="{TemplateBinding BorderThickness}" Margin="0,0,79,0"/>
+													<Border x:Name="BackgroundElement" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}" Margin="2,2,79,2" CornerRadius="39">
+														<TextBlock x:Name="GlyphElement" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextBoxButtonForegroundThemeBrush}" FontStyle="Normal" FontFamily="{ThemeResource SymbolThemeFontFamily}" HorizontalAlignment="Center" Text="&#xE0A4;" VerticalAlignment="Center"/>
+													</Border>
+												</Grid>
+											</ControlTemplate>
+										</Setter.Value>
+									</Setter>
+								</Style>
+							</Grid.Resources>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BackgroundElement">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledBackgroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledBorderThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentElement">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledForegroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="PlaceholderTextContentPresenter">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledForegroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Normal">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="{ThemeResource TextControlBackgroundThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundElement"/>
+											<DoubleAnimation Duration="0" To="{ThemeResource TextControlBorderThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BorderElement"/>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="{ThemeResource TextControlPointerOverBackgroundThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundElement"/>
+											<DoubleAnimation Duration="0" To="{ThemeResource TextControlPointerOverBorderThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BorderElement"/>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Focused"/>
+								</VisualStateGroup>
+								<VisualStateGroup x:Name="ButtonStates">
+									<VisualState x:Name="ButtonVisible">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="DeleteButton">
+												<DiscreteObjectKeyFrame KeyTime="0">
+													<DiscreteObjectKeyFrame.Value>
+														<Visibility>Visible</Visibility>
+													</DiscreteObjectKeyFrame.Value>
+												</DiscreteObjectKeyFrame>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="ButtonCollapsed"/>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Border x:Name="BackgroundElement" Background="{TemplateBinding Background}" Margin="2,28,2,2" Grid.Row="1" Grid.RowSpan="1" CornerRadius="38"/>
+							<Border x:Name="BorderElement" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Row="1" Grid.RowSpan="1" Margin="0,28,0,0"/>
+							<ContentPresenter x:Name="HeaderContentPresenter" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{ThemeResource TextBoxForegroundHeaderThemeBrush}" FontWeight="Semilight" Margin="0,4,0,4" Grid.Row="0"/>
+							<ScrollViewer x:Name="ContentElement" AutomationProperties.AccessibilityView="Raw" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" Margin="20,35,26,6" Padding="{TemplateBinding Padding}" Grid.Row="1" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled" FontSize="52"/>
+							<ContentControl x:Name="PlaceholderTextContentPresenter" Grid.ColumnSpan="2" Content="{TemplateBinding PlaceholderText}" Foreground="{ThemeResource TextBoxPlaceholderTextThemeBrush}" IsHitTestVisible="False" IsTabStop="False" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Grid.Row="1"/>
+							<Button x:Name="DeleteButton" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="1" FontSize="{TemplateBinding FontSize}" IsTabStop="False" Grid.Row="1" Style="{StaticResource DeleteButtonStyle}" Visibility="Collapsed" VerticalAlignment="Stretch"/>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="ButtonStyle1" TargetType="Button">
+			<Setter Property="Background" Value="{ThemeResource ButtonBackgroundThemeBrush}"/>
+			<Setter Property="Foreground" Value="{ThemeResource ButtonForegroundThemeBrush}"/>
+			<Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderThemeBrush}"/>
+			<Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+			<Setter Property="Padding" Value="12,4,12,4"/>
+			<Setter Property="HorizontalAlignment" Value="Left"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="Button">
+						<Grid>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Normal"/>
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPointerOverBackgroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPointerOverForegroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Pressed">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPressedBackgroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPressedForegroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBackgroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Border">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledBorderThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonDisabledForegroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+								</VisualStateGroup>
+								<VisualStateGroup x:Name="FocusStates">
+									<VisualState x:Name="Focused">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualWhite"/>
+											<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualBlack"/>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Unfocused"/>
+									<VisualState x:Name="PointerFocused"/>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="3" CornerRadius="4">
+								<ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+							</Border>
+							<Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
+							<Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1"/>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="TextBoxStyle2" TargetType="TextBox">
+			<Setter Property="MinWidth" Value="{ThemeResource TextControlThemeMinWidth}"/>
+			<Setter Property="MinHeight" Value="{ThemeResource TextControlThemeMinHeight}"/>
+			<Setter Property="Foreground" Value="{ThemeResource TextBoxForegroundThemeBrush}"/>
+			<Setter Property="Background" Value="{ThemeResource TextBoxBackgroundThemeBrush}"/>
+			<Setter Property="BorderBrush" Value="{ThemeResource TextBoxBorderThemeBrush}"/>
+			<Setter Property="SelectionHighlightColor" Value="{ThemeResource TextSelectionHighlightColorThemeBrush}"/>
+			<Setter Property="BorderThickness" Value="{ThemeResource TextControlBorderThemeThickness}"/>
+			<Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+			<Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+			<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+			<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+			<Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+			<Setter Property="Padding" Value="{ThemeResource TextControlThemePadding}"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="TextBox">
+						<Grid>
+							<Grid.Resources>
+								<Style x:Name="DeleteButtonStyle" TargetType="Button">
+									<Setter Property="Template">
+										<Setter.Value>
+											<ControlTemplate TargetType="Button">
+												<Grid>
+													<VisualStateManager.VisualStateGroups>
+														<VisualStateGroup x:Name="CommonStates">
+															<VisualState x:Name="Normal"/>
+															<VisualState x:Name="PointerOver">
+																<Storyboard>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BackgroundElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPointerOverBackgroundThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPointerOverBorderThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="GlyphElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPointerOverForegroundThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																</Storyboard>
+															</VisualState>
+															<VisualState x:Name="Pressed">
+																<Storyboard>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BackgroundElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPressedBackgroundThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPressedBorderThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="GlyphElement">
+																		<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxButtonPressedForegroundThemeBrush}"/>
+																	</ObjectAnimationUsingKeyFrames>
+																</Storyboard>
+															</VisualState>
+															<VisualState x:Name="Disabled">
+																<Storyboard>
+																	<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundElement"/>
+																	<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BorderElement"/>
+																</Storyboard>
+															</VisualState>
+														</VisualStateGroup>
+													</VisualStateManager.VisualStateGroups>
+													<Border x:Name="BorderElement" BorderBrush="{ThemeResource TextBoxButtonBorderThemeBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+													<Border x:Name="BackgroundElement" Background="{ThemeResource TextBoxButtonBackgroundThemeBrush}" Margin="{TemplateBinding BorderThickness}">
+														<TextBlock x:Name="GlyphElement" AutomationProperties.AccessibilityView="Raw" Foreground="{ThemeResource TextBoxButtonForegroundThemeBrush}" FontStyle="Normal" FontFamily="{ThemeResource SymbolThemeFontFamily}" HorizontalAlignment="Center" Text="&#xE0A4;" VerticalAlignment="Center"/>
+													</Border>
+												</Grid>
+											</ControlTemplate>
+										</Setter.Value>
+									</Setter>
+								</Style>
+							</Grid.Resources>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="*"/>
+							</Grid.RowDefinitions>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CommonStates">
+									<VisualState x:Name="Disabled">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="BackgroundElement">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledBackgroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="BorderElement">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledBorderThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentElement">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledForegroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="PlaceholderTextContentPresenter">
+												<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TextBoxDisabledForegroundThemeBrush}"/>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Normal">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="{ThemeResource TextControlBackgroundThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundElement"/>
+											<DoubleAnimation Duration="0" To="{ThemeResource TextControlBorderThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BorderElement"/>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="PointerOver">
+										<Storyboard>
+											<DoubleAnimation Duration="0" To="{ThemeResource TextControlPointerOverBackgroundThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundElement"/>
+											<DoubleAnimation Duration="0" To="{ThemeResource TextControlPointerOverBorderThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BorderElement"/>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Focused"/>
+								</VisualStateGroup>
+								<VisualStateGroup x:Name="ButtonStates">
+									<VisualState x:Name="ButtonVisible">
+										<Storyboard>
+											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="DeleteButton">
+												<DiscreteObjectKeyFrame KeyTime="0">
+													<DiscreteObjectKeyFrame.Value>
+														<Visibility>Visible</Visibility>
+													</DiscreteObjectKeyFrame.Value>
+												</DiscreteObjectKeyFrame>
+											</ObjectAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="ButtonCollapsed"/>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Border x:Name="BackgroundElement" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" Margin="{TemplateBinding BorderThickness}" Grid.Row="1" Grid.RowSpan="1"/>
+							<Border x:Name="BorderElement" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="1" CornerRadius="4"/>
+							<ContentPresenter x:Name="HeaderContentPresenter" Grid.ColumnSpan="2" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" Foreground="{ThemeResource TextBoxForegroundHeaderThemeBrush}" FontWeight="Semilight" Margin="0,4,0,4" Grid.Row="0"/>
+							<ScrollViewer x:Name="ContentElement" AutomationProperties.AccessibilityView="Raw" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" Margin="2,6,2,5" Padding="{TemplateBinding Padding}" Grid.Row="1" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled"/>
+							<ContentControl x:Name="PlaceholderTextContentPresenter" Grid.ColumnSpan="2" Content="{TemplateBinding PlaceholderText}" Foreground="{ThemeResource TextBoxPlaceholderTextThemeBrush}" IsHitTestVisible="False" IsTabStop="False" Margin="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" Grid.Row="1"/>
+							<Button x:Name="DeleteButton" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="1" FontSize="{TemplateBinding FontSize}" IsTabStop="False" Grid.Row="1" Style="{StaticResource DeleteButtonStyle}" Visibility="Collapsed" VerticalAlignment="Stretch"/>
+						</Grid>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Page.Resources>
+
+    <Grid>
+    	<Grid.Background>
+    		<ImageBrush Stretch="UniformToFill" ImageSource="sundown-at-badshahi-mosque-in-lahore-pakistan1.jpg"/>
+    	</Grid.Background>
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition Width="72*"/>
+    		<ColumnDefinition Width="150*"/>
+    		<ColumnDefinition Width="60*"/>
+    		<ColumnDefinition Width="36*"/>
+    		<ColumnDefinition Width="222*"/>
+    		<ColumnDefinition Width="240*"/>
+    		<ColumnDefinition Width="237*"/>
+    		<ColumnDefinition Width="39*"/>
+    		<ColumnDefinition Width="54*"/>
+    		<ColumnDefinition Width="180*"/>
+    		<ColumnDefinition Width="76*"/>
+    	</Grid.ColumnDefinitions>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="15*"/>
+    		<RowDefinition Height="5*"/>
+    		<RowDefinition Height="35*"/>
+    		<RowDefinition Height="7*"/>
+    		<RowDefinition Height="8*"/>
+    		<RowDefinition Height="3*"/>
+    		<RowDefinition Height="38*"/>
+    		<RowDefinition Height="5*"/>
+    		<RowDefinition Height="12*"/>
+    	</Grid.RowDefinitions>
+    	<Rectangle Grid.Column="3" Fill="#FFF0F0F0" HorizontalAlignment="Left" Height="576" Margin="20,24,0,0" Grid.Row="1" Grid.RowSpan="7" VerticalAlignment="Top" Width="773" Grid.ColumnSpan="6"/>
+
+    	<Rectangle Grid.ColumnSpan="7" Grid.Column="2" Fill="#FF2472B4" HorizontalAlignment="Left" Height="85" Grid.Row="3" VerticalAlignment="Top" Width="861" Margin="18,17,0,0" Grid.RowSpan="3"/>
+    	<Path Grid.Column="2" Data="M222,438 L283.333,477 L283.833,437.333 z" Fill="#FF185485" HorizontalAlignment="Left" Height="40.667" Grid.Row="5" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="62.833" Grid.ColumnSpan="2" Margin="17.5,10.833,0,0" Grid.RowSpan="2"/>
+    	<Path Grid.Column="6" Data="M912,552" Fill="#FF003D70" HorizontalAlignment="Left" Height="0" Margin="132,114,0,0" Grid.Row="6" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="0"/>
+    	<Rectangle Grid.ColumnSpan="11" Fill="Black" HorizontalAlignment="Left" Height="90" Margin="-1,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="1367"/>
+    	<TextBlock Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="39" Margin="30,27,0,0" TextWrapping="Wrap" Text="LAHORE ANSWERS" VerticalAlignment="Top" Width="272" FontSize="29.333"/>
+    	<Rectangle Grid.ColumnSpan="4" Fill="#FFDABE0B" HorizontalAlignment="Left" Height="9" Margin="30,60,0,0" Stroke="Black" VerticalAlignment="Top" Width="253"/>
+    	<Rectangle Grid.Column="3" Fill="Black" HorizontalAlignment="Left" Height="6" Margin="19,29,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="260" Grid.ColumnSpan="3"/>
+    	<Rectangle Grid.Column="6" Fill="Black" HorizontalAlignment="Left" Height="6" Margin="44,29,0,0" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="250" Grid.ColumnSpan="3"/>
+    	<TextBlock Grid.Column="5" HorizontalAlignment="Left" Height="68" Margin="61,8,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Welcome To" VerticalAlignment="Top" Width="223" FontFamily="Segoe Script" FontSize="32" Foreground="Black" Grid.ColumnSpan="2"/>
+    	<Path Grid.Column="5" Data="M23.405,12.7875 L28.655,12.7875 L28.655,52.85 L46.655,52.85 L46.655,57.6 L23.405,57.6 z M68.0942,18.225 C67.8858,19.4958 67.6462,20.4958 67.3754,21.225 L60.4067,40.3187 L75.9379,40.3187 L68.9067,21.225 C68.6775,20.6 68.4483,19.6 68.2192,18.225 z M65.5317,12.7875 L70.9692,12.7875 L88.2192,57.6 L82.4067,57.6 L77.6567,45.0375 L58.6567,45.0375 L54.1879,57.6 L48.3442,57.6 z M94.8117,12.7875 L100.062,12.7875 L100.062,32.4437 L123.249,32.4437 L123.249,12.7875 L128.499,12.7875 L128.499,57.6 L123.249,57.6 L123.249,37.1625 L100.062,37.1625 L100.062,57.6 L94.8117,57.6 z M158.686,16.7875 C153.978,16.7875 150.155,18.4854 147.217,21.8812 C144.28,25.2771 142.811,29.7354 142.811,35.2562 C142.811,40.7771 144.243,45.2198 147.108,48.5844 C149.972,51.949 153.707,53.6312 158.311,53.6312 C163.228,53.6312 167.103,52.0271 169.936,48.8187 C172.769,45.6104 174.186,41.1208 174.186,35.35 C174.186,29.4333 172.811,24.8604 170.061,21.6312 C167.311,18.4021 163.519,16.7875 158.686,16.7875 z M159.061,12.0375 C165.248,12.0375 170.233,14.1208 174.014,18.2875 C177.795,22.4542 179.686,27.9021 179.686,34.6312 C179.686,41.9437 177.748,47.725 173.873,51.975 C169.998,56.225 164.811,58.35 158.311,58.35 C151.957,58.35 146.868,56.2562 143.045,52.0687 C139.222,47.8812 137.311,42.4333 137.311,35.725 C137.311,28.5167 139.259,22.7667 143.155,18.475 C147.05,14.1833 152.353,12.0375 159.061,12.0375 z M193.748,17.5375 L193.748,33.7875 L200.873,33.7875 C202.186,33.7875 203.399,33.5896 204.514,33.1937 C205.629,32.7979 206.592,32.2302 207.405,31.4906 C208.217,30.751 208.853,29.8448 209.311,28.7719 C209.769,27.699 209.998,26.4958 209.998,25.1625 C209.998,22.7667 209.222,20.8969 207.67,19.5531 C206.118,18.2094 203.873,17.5375 200.936,17.5375 z M188.498,12.7875 L201.873,12.7875 C203.832,12.7875 205.639,13.0323 207.295,13.5219 C208.951,14.0115 210.389,14.7562 211.608,15.7562 C212.826,16.7562 213.78,18.001 214.467,19.4906 C215.155,20.9802 215.498,22.725 215.498,24.725 C215.498,26.2875 215.264,27.7198 214.795,29.0219 C214.326,30.324 213.66,31.4854 212.795,32.5062 C211.931,33.5271 210.889,34.3969 209.67,35.1156 C208.451,35.8344 207.082,36.3917 205.561,36.7875 L205.561,36.9125 C206.311,37.2458 206.962,37.626 207.514,38.0531 C208.066,38.4802 208.592,38.9854 209.092,39.5687 C209.592,40.1521 210.087,40.8135 210.576,41.5531 C211.066,42.2927 211.613,43.1521 212.217,44.1312 L220.623,57.6 L214.373,57.6 L206.873,45.0375 C206.186,43.8708 205.519,42.876 204.873,42.0531 C204.228,41.2302 203.566,40.5583 202.889,40.0375 C202.212,39.5167 201.483,39.1365 200.701,38.8969 C199.92,38.6573 199.04,38.5375 198.061,38.5375 L193.748,38.5375 L193.748,57.6 L188.498,57.6 z M226.778,12.7875 L249.528,12.7875 L249.528,17.5375 L232.028,17.5375 L232.028,32.4437 L248.216,32.4437 L248.216,37.1625 L232.028,37.1625 L232.028,52.85 L250.528,52.85 L250.528,57.6 L226.778,57.6 z M20.4375,95.025 C20.2292,96.2958 19.9896,97.2958 19.7188,98.025 L12.75,117.119 L28.2812,117.119 L21.25,98.025 C21.0208,97.4 20.7917,96.4 20.5625,95.025 z M17.875,89.5875 L23.3125,89.5875 L40.5625,134.4 L34.75,134.4 L30,121.837 L11,121.837 L6.53125,134.4 L0.6875,134.4 z M47.155,89.5875 L53.9675,89.5875 L76.405,124.744 C77.3425,126.202 77.9467,127.202 78.2175,127.744 L78.3425,127.744 C78.1342,126.452 78.03,124.254 78.03,121.15 L78.03,89.5875 L83.28,89.5875 L83.28,134.4 L76.8425,134.4 L53.78,98.6812 C53.1967,97.7854 52.7175,96.8479 52.3425,95.8687 L52.155,95.8687 C52.3217,96.8271 52.405,98.8792 52.405,102.025 L52.405,134.4 L47.155,134.4 z M108.56,88.8375 C112.976,88.8375 116.195,89.3687 118.216,90.4312 L118.216,96.3375 C115.57,94.5042 112.174,93.5875 108.028,93.5875 C106.882,93.5875 105.737,93.7073 104.591,93.9469 C103.445,94.1865 102.424,94.5771 101.528,95.1187 C100.632,95.6604 99.9033,96.3583 99.3408,97.2125 C98.7783,98.0667 98.4971,99.1083 98.4971,100.337 C98.4971,101.483 98.7106,102.473 99.1377,103.306 C99.5648,104.14 100.195,104.9 101.028,105.587 C101.862,106.275 102.877,106.942 104.075,107.587 C105.273,108.233 106.653,108.942 108.216,109.712 C109.82,110.504 111.341,111.337 112.778,112.212 C114.216,113.087 115.476,114.056 116.56,115.119 C117.643,116.181 118.502,117.358 119.138,118.65 C119.773,119.942 120.091,121.421 120.091,123.087 C120.091,125.296 119.659,127.166 118.794,128.697 C117.929,130.228 116.763,131.473 115.294,132.431 C113.825,133.39 112.132,134.082 110.216,134.509 C108.299,134.936 106.278,135.15 104.153,135.15 C103.445,135.15 102.57,135.093 101.528,134.978 C100.487,134.864 99.4242,134.697 98.3408,134.478 C97.2575,134.259 96.2315,133.989 95.2627,133.666 C94.294,133.343 93.5179,132.983 92.9346,132.587 L92.9346,126.4 C93.6429,127.025 94.4919,127.587 95.4815,128.087 C96.471,128.587 97.5127,129.009 98.6065,129.353 C99.7002,129.697 100.799,129.962 101.903,130.15 C103.007,130.337 104.028,130.431 104.966,130.431 C108.195,130.431 110.606,129.832 112.2,128.634 C113.794,127.436 114.591,125.712 114.591,123.462 C114.591,122.254 114.325,121.202 113.794,120.306 C113.263,119.41 112.528,118.593 111.591,117.853 C110.653,117.114 109.544,116.405 108.263,115.728 C106.981,115.051 105.601,114.337 104.122,113.587 C102.56,112.796 101.101,111.994 99.7471,111.181 C98.3929,110.369 97.2158,109.473 96.2158,108.494 C95.2158,107.515 94.4294,106.405 93.8565,105.166 C93.2835,103.926 92.9971,102.473 92.9971,100.806 C92.9971,98.7646 93.445,96.9885 94.3408,95.4781 C95.2367,93.9677 96.4137,92.7229 97.8721,91.7437 C99.3304,90.7646 100.992,90.0354 102.856,89.5562 C104.721,89.0771 106.622,88.8375 108.56,88.8375 z M123.966,89.5875 L129.747,89.5875 L139.278,123.962 C139.674,125.4 139.924,126.9 140.028,128.462 L140.185,128.462 C140.289,127.358 140.612,125.858 141.153,123.962 L151.06,89.5875 L156.091,89.5875 L165.591,124.212 C165.924,125.4 166.174,126.796 166.341,128.4 L166.466,128.4 C166.549,127.317 166.83,125.879 167.31,124.087 L176.466,89.5875 L182.153,89.5875 L169.497,134.4 L163.341,134.4 L154.122,101.65 C153.726,100.254 153.487,98.7333 153.403,97.0875 L153.278,97.0875 C153.153,98.6292 152.883,100.129 152.466,101.587 L143.185,134.4 L137.091,134.4 z M188.808,89.5875 L211.558,89.5875 L211.558,94.3375 L194.058,94.3375 L194.058,109.244 L210.246,109.244 L210.246,113.962 L194.058,113.962 L194.058,129.65 L212.558,129.65 L212.558,134.4 L188.808,134.4 z M226.432,94.3375 L226.432,110.587 L233.557,110.587 C234.869,110.587 236.083,110.39 237.197,109.994 C238.312,109.598 239.275,109.03 240.088,108.291 C240.9,107.551 241.536,106.645 241.994,105.572 C242.452,104.499 242.682,103.296 242.682,101.962 C242.682,99.5667 241.906,97.6969 240.354,96.3531 C238.801,95.0094 236.557,94.3375 233.619,94.3375 z M221.182,89.5875 L234.557,89.5875 C236.515,89.5875 238.322,89.8323 239.979,90.3219 C241.635,90.8115 243.072,91.5562 244.291,92.5562 C245.51,93.5562 246.463,94.801 247.15,96.2906 C247.838,97.7802 248.182,99.525 248.182,101.525 C248.182,103.087 247.947,104.52 247.479,105.822 C247.01,107.124 246.343,108.285 245.479,109.306 C244.614,110.327 243.572,111.197 242.354,111.916 C241.135,112.634 239.765,113.192 238.244,113.587 L238.244,113.712 C238.994,114.046 239.645,114.426 240.197,114.853 C240.749,115.28 241.275,115.785 241.775,116.369 C242.275,116.952 242.77,117.614 243.26,118.353 C243.749,119.093 244.296,119.952 244.9,120.931 L253.307,134.4 L247.057,134.4 L239.557,121.837 C238.869,120.671 238.202,119.676 237.557,118.853 C236.911,118.03 236.249,117.358 235.572,116.837 C234.895,116.317 234.166,115.936 233.385,115.697 C232.604,115.457 231.723,115.337 230.744,115.337 L226.432,115.337 L226.432,134.4 L221.182,134.4 z M272.993,88.8375 C277.41,88.8375 280.628,89.3687 282.649,90.4312 L282.649,96.3375 C280.003,94.5042 276.608,93.5875 272.462,93.5875 C271.316,93.5875 270.17,93.7073 269.024,93.9469 C267.878,94.1865 266.858,94.5771 265.962,95.1187 C265.066,95.6604 264.337,96.3583 263.774,97.2125 C263.212,98.0667 262.93,99.1083 262.93,100.337 C262.93,101.483 263.144,102.473 263.571,103.306 C263.998,104.14 264.628,104.9 265.462,105.587 C266.295,106.275 267.311,106.942 268.509,107.587 C269.706,108.233 271.087,108.942 272.649,109.712 C274.253,110.504 275.774,111.337 277.212,112.212 C278.649,113.087 279.91,114.056 280.993,115.119 C282.076,116.181 282.936,117.358 283.571,118.65 C284.206,119.942 284.524,121.421 284.524,123.087 C284.524,125.296 284.092,127.166 283.227,128.697 C282.363,130.228 281.196,131.473 279.727,132.431 C278.259,133.39 276.566,134.082 274.649,134.509 C272.733,134.936 270.712,135.15 268.587,135.15 C267.878,135.15 267.003,135.093 265.962,134.978 C264.92,134.864 263.858,134.697 262.774,134.478 C261.691,134.259 260.665,133.989 259.696,133.666 C258.727,133.343 257.951,132.983 257.368,132.587 L257.368,126.4 C258.076,127.025 258.925,127.587 259.915,128.087 C260.904,128.587 261.946,129.009 263.04,129.353 C264.134,129.697 265.233,129.962 266.337,130.15 C267.441,130.337 268.462,130.431 269.399,130.431 C272.628,130.431 275.04,129.832 276.634,128.634 C278.227,127.436 279.024,125.712 279.024,123.462 C279.024,122.254 278.759,121.202 278.227,120.306 C277.696,119.41 276.962,118.593 276.024,117.853 C275.087,117.114 273.977,116.405 272.696,115.728 C271.415,115.051 270.035,114.337 268.555,113.587 C266.993,112.796 265.535,111.994 264.18,111.181 C262.826,110.369 261.649,109.473 260.649,108.494 C259.649,107.515 258.863,106.405 258.29,105.166 C257.717,103.926 257.43,102.473 257.43,100.806 C257.43,98.7646 257.878,96.9885 258.774,95.4781 C259.67,93.9677 260.847,92.7229 262.305,91.7437 C263.764,90.7646 265.425,90.0354 267.29,89.5562 C269.154,89.0771 271.055,88.8375 272.993,88.8375 z" Fill="#FF646464" Margin="16.663,77.037,176.5,9.85" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Stretch="Fill" UseLayoutRounding="False" StrokeStartLineCap="Round" StrokeThickness="6" Grid.ColumnSpan="2">
+    		<Path.RenderTransform>
+    			<TransformGroup>
+    				<ScaleTransform/>
+    				<SkewTransform/>
+    				<RotateTransform/>
+    				<TranslateTransform/>
+    			</TransformGroup>
+    		</Path.RenderTransform>
+    	</Path>
+    	<Path Grid.Column="5" Data="M23.405,12.7875 L28.655,12.7875 L28.655,52.85 L46.655,52.85 L46.655,57.6 L23.405,57.6 z M68.0942,18.225 C67.8858,19.4958 67.6462,20.4958 67.3754,21.225 L60.4067,40.3187 L75.9379,40.3187 L68.9067,21.225 C68.6775,20.6 68.4483,19.6 68.2192,18.225 z M65.5317,12.7875 L70.9692,12.7875 L88.2192,57.6 L82.4067,57.6 L77.6567,45.0375 L58.6567,45.0375 L54.1879,57.6 L48.3442,57.6 z M94.8117,12.7875 L100.062,12.7875 L100.062,32.4437 L123.249,32.4437 L123.249,12.7875 L128.499,12.7875 L128.499,57.6 L123.249,57.6 L123.249,37.1625 L100.062,37.1625 L100.062,57.6 L94.8117,57.6 z M158.686,16.7875 C153.978,16.7875 150.155,18.4854 147.217,21.8812 C144.28,25.2771 142.811,29.7354 142.811,35.2562 C142.811,40.7771 144.243,45.2198 147.108,48.5844 C149.972,51.949 153.707,53.6312 158.311,53.6312 C163.228,53.6312 167.103,52.0271 169.936,48.8187 C172.769,45.6104 174.186,41.1208 174.186,35.35 C174.186,29.4333 172.811,24.8604 170.061,21.6312 C167.311,18.4021 163.519,16.7875 158.686,16.7875 z M159.061,12.0375 C165.248,12.0375 170.233,14.1208 174.014,18.2875 C177.795,22.4542 179.686,27.9021 179.686,34.6312 C179.686,41.9437 177.748,47.725 173.873,51.975 C169.998,56.225 164.811,58.35 158.311,58.35 C151.957,58.35 146.868,56.2562 143.045,52.0687 C139.222,47.8812 137.311,42.4333 137.311,35.725 C137.311,28.5167 139.259,22.7667 143.155,18.475 C147.05,14.1833 152.353,12.0375 159.061,12.0375 z M193.748,17.5375 L193.748,33.7875 L200.873,33.7875 C202.186,33.7875 203.399,33.5896 204.514,33.1937 C205.629,32.7979 206.592,32.2302 207.405,31.4906 C208.217,30.751 208.853,29.8448 209.311,28.7719 C209.769,27.699 209.998,26.4958 209.998,25.1625 C209.998,22.7667 209.222,20.8969 207.67,19.5531 C206.118,18.2094 203.873,17.5375 200.936,17.5375 z M188.498,12.7875 L201.873,12.7875 C203.832,12.7875 205.639,13.0323 207.295,13.5219 C208.951,14.0115 210.389,14.7562 211.608,15.7562 C212.826,16.7562 213.78,18.001 214.467,19.4906 C215.155,20.9802 215.498,22.725 215.498,24.725 C215.498,26.2875 215.264,27.7198 214.795,29.0219 C214.326,30.324 213.66,31.4854 212.795,32.5062 C211.931,33.5271 210.889,34.3969 209.67,35.1156 C208.451,35.8344 207.082,36.3917 205.561,36.7875 L205.561,36.9125 C206.311,37.2458 206.962,37.626 207.514,38.0531 C208.066,38.4802 208.592,38.9854 209.092,39.5687 C209.592,40.1521 210.087,40.8135 210.576,41.5531 C211.066,42.2927 211.613,43.1521 212.217,44.1312 L220.623,57.6 L214.373,57.6 L206.873,45.0375 C206.186,43.8708 205.519,42.876 204.873,42.0531 C204.228,41.2302 203.566,40.5583 202.889,40.0375 C202.212,39.5167 201.483,39.1365 200.701,38.8969 C199.92,38.6573 199.04,38.5375 198.061,38.5375 L193.748,38.5375 L193.748,57.6 L188.498,57.6 z M226.778,12.7875 L249.528,12.7875 L249.528,17.5375 L232.028,17.5375 L232.028,32.4437 L248.216,32.4437 L248.216,37.1625 L232.028,37.1625 L232.028,52.85 L250.528,52.85 L250.528,57.6 L226.778,57.6 z M20.4375,95.025 C20.2292,96.2958 19.9896,97.2958 19.7188,98.025 L12.75,117.119 L28.2812,117.119 L21.25,98.025 C21.0208,97.4 20.7917,96.4 20.5625,95.025 z M17.875,89.5875 L23.3125,89.5875 L40.5625,134.4 L34.75,134.4 L30,121.837 L11,121.837 L6.53125,134.4 L0.6875,134.4 z M47.155,89.5875 L53.9675,89.5875 L76.405,124.744 C77.3425,126.202 77.9467,127.202 78.2175,127.744 L78.3425,127.744 C78.1342,126.452 78.03,124.254 78.03,121.15 L78.03,89.5875 L83.28,89.5875 L83.28,134.4 L76.8425,134.4 L53.78,98.6812 C53.1967,97.7854 52.7175,96.8479 52.3425,95.8687 L52.155,95.8687 C52.3217,96.8271 52.405,98.8792 52.405,102.025 L52.405,134.4 L47.155,134.4 z M108.56,88.8375 C112.976,88.8375 116.195,89.3687 118.216,90.4312 L118.216,96.3375 C115.57,94.5042 112.174,93.5875 108.028,93.5875 C106.882,93.5875 105.737,93.7073 104.591,93.9469 C103.445,94.1865 102.424,94.5771 101.528,95.1187 C100.632,95.6604 99.9033,96.3583 99.3408,97.2125 C98.7783,98.0667 98.4971,99.1083 98.4971,100.337 C98.4971,101.483 98.7106,102.473 99.1377,103.306 C99.5648,104.14 100.195,104.9 101.028,105.587 C101.862,106.275 102.877,106.942 104.075,107.587 C105.273,108.233 106.653,108.942 108.216,109.712 C109.82,110.504 111.341,111.337 112.778,112.212 C114.216,113.087 115.476,114.056 116.56,115.119 C117.643,116.181 118.502,117.358 119.138,118.65 C119.773,119.942 120.091,121.421 120.091,123.087 C120.091,125.296 119.659,127.166 118.794,128.697 C117.929,130.228 116.763,131.473 115.294,132.431 C113.825,133.39 112.132,134.082 110.216,134.509 C108.299,134.936 106.278,135.15 104.153,135.15 C103.445,135.15 102.57,135.093 101.528,134.978 C100.487,134.864 99.4242,134.697 98.3408,134.478 C97.2575,134.259 96.2315,133.989 95.2627,133.666 C94.294,133.343 93.5179,132.983 92.9346,132.587 L92.9346,126.4 C93.6429,127.025 94.4919,127.587 95.4815,128.087 C96.471,128.587 97.5127,129.009 98.6065,129.353 C99.7002,129.697 100.799,129.962 101.903,130.15 C103.007,130.337 104.028,130.431 104.966,130.431 C108.195,130.431 110.606,129.832 112.2,128.634 C113.794,127.436 114.591,125.712 114.591,123.462 C114.591,122.254 114.325,121.202 113.794,120.306 C113.263,119.41 112.528,118.593 111.591,117.853 C110.653,117.114 109.544,116.405 108.263,115.728 C106.981,115.051 105.601,114.337 104.122,113.587 C102.56,112.796 101.101,111.994 99.7471,111.181 C98.3929,110.369 97.2158,109.473 96.2158,108.494 C95.2158,107.515 94.4294,106.405 93.8565,105.166 C93.2835,103.926 92.9971,102.473 92.9971,100.806 C92.9971,98.7646 93.445,96.9885 94.3408,95.4781 C95.2367,93.9677 96.4137,92.7229 97.8721,91.7437 C99.3304,90.7646 100.992,90.0354 102.856,89.5562 C104.721,89.0771 106.622,88.8375 108.56,88.8375 z M123.966,89.5875 L129.747,89.5875 L139.278,123.962 C139.674,125.4 139.924,126.9 140.028,128.462 L140.185,128.462 C140.289,127.358 140.612,125.858 141.153,123.962 L151.06,89.5875 L156.091,89.5875 L165.591,124.212 C165.924,125.4 166.174,126.796 166.341,128.4 L166.466,128.4 C166.549,127.317 166.83,125.879 167.31,124.087 L176.466,89.5875 L182.153,89.5875 L169.497,134.4 L163.341,134.4 L154.122,101.65 C153.726,100.254 153.487,98.7333 153.403,97.0875 L153.278,97.0875 C153.153,98.6292 152.883,100.129 152.466,101.587 L143.185,134.4 L137.091,134.4 z M188.808,89.5875 L211.558,89.5875 L211.558,94.3375 L194.058,94.3375 L194.058,109.244 L210.246,109.244 L210.246,113.962 L194.058,113.962 L194.058,129.65 L212.558,129.65 L212.558,134.4 L188.808,134.4 z M226.432,94.3375 L226.432,110.587 L233.557,110.587 C234.869,110.587 236.083,110.39 237.197,109.994 C238.312,109.598 239.275,109.03 240.088,108.291 C240.9,107.551 241.536,106.645 241.994,105.572 C242.452,104.499 242.682,103.296 242.682,101.962 C242.682,99.5667 241.906,97.6969 240.354,96.3531 C238.801,95.0094 236.557,94.3375 233.619,94.3375 z M221.182,89.5875 L234.557,89.5875 C236.515,89.5875 238.322,89.8323 239.979,90.3219 C241.635,90.8115 243.072,91.5562 244.291,92.5562 C245.51,93.5562 246.463,94.801 247.15,96.2906 C247.838,97.7802 248.182,99.525 248.182,101.525 C248.182,103.087 247.947,104.52 247.479,105.822 C247.01,107.124 246.343,108.285 245.479,109.306 C244.614,110.327 243.572,111.197 242.354,111.916 C241.135,112.634 239.765,113.192 238.244,113.587 L238.244,113.712 C238.994,114.046 239.645,114.426 240.197,114.853 C240.749,115.28 241.275,115.785 241.775,116.369 C242.275,116.952 242.77,117.614 243.26,118.353 C243.749,119.093 244.296,119.952 244.9,120.931 L253.307,134.4 L247.057,134.4 L239.557,121.837 C238.869,120.671 238.202,119.676 237.557,118.853 C236.911,118.03 236.249,117.358 235.572,116.837 C234.895,116.317 234.166,115.936 233.385,115.697 C232.604,115.457 231.723,115.337 230.744,115.337 L226.432,115.337 L226.432,134.4 L221.182,134.4 z M272.993,88.8375 C277.41,88.8375 280.628,89.3687 282.649,90.4312 L282.649,96.3375 C280.003,94.5042 276.608,93.5875 272.462,93.5875 C271.316,93.5875 270.17,93.7073 269.024,93.9469 C267.878,94.1865 266.858,94.5771 265.962,95.1187 C265.066,95.6604 264.337,96.3583 263.774,97.2125 C263.212,98.0667 262.93,99.1083 262.93,100.337 C262.93,101.483 263.144,102.473 263.571,103.306 C263.998,104.14 264.628,104.9 265.462,105.587 C266.295,106.275 267.311,106.942 268.509,107.587 C269.706,108.233 271.087,108.942 272.649,109.712 C274.253,110.504 275.774,111.337 277.212,112.212 C278.649,113.087 279.91,114.056 280.993,115.119 C282.076,116.181 282.936,117.358 283.571,118.65 C284.206,119.942 284.524,121.421 284.524,123.087 C284.524,125.296 284.092,127.166 283.227,128.697 C282.363,130.228 281.196,131.473 279.727,132.431 C278.259,133.39 276.566,134.082 274.649,134.509 C272.733,134.936 270.712,135.15 268.587,135.15 C267.878,135.15 267.003,135.093 265.962,134.978 C264.92,134.864 263.858,134.697 262.774,134.478 C261.691,134.259 260.665,133.989 259.696,133.666 C258.727,133.343 257.951,132.983 257.368,132.587 L257.368,126.4 C258.076,127.025 258.925,127.587 259.915,128.087 C260.904,128.587 261.946,129.009 263.04,129.353 C264.134,129.697 265.233,129.962 266.337,130.15 C267.441,130.337 268.462,130.431 269.399,130.431 C272.628,130.431 275.04,129.832 276.634,128.634 C278.227,127.436 279.024,125.712 279.024,123.462 C279.024,122.254 278.759,121.202 278.227,120.306 C277.696,119.41 276.962,118.593 276.024,117.853 C275.087,117.114 273.977,116.405 272.696,115.728 C271.415,115.051 270.035,114.337 268.555,113.587 C266.993,112.796 265.535,111.994 264.18,111.181 C262.826,110.369 261.649,109.473 260.649,108.494 C259.649,107.515 258.863,106.405 258.29,105.166 C257.717,103.926 257.43,102.473 257.43,100.806 C257.43,98.7646 257.878,96.9885 258.774,95.4781 C259.67,93.9677 260.847,92.7229 262.305,91.7437 C263.764,90.7646 265.425,90.0354 267.29,89.5562 C269.154,89.0771 271.055,88.8375 272.993,88.8375 z" Fill="Black" Margin="13.663,77.037,179.5,9.85" Grid.Row="2" RenderTransformOrigin="0.5,0.5" Stretch="Fill" UseLayoutRounding="False" StrokeStartLineCap="Round" StrokeThickness="6" Grid.ColumnSpan="2">
+    		<Path.RenderTransform>
+    			<TransformGroup>
+    				<ScaleTransform/>
+    				<SkewTransform/>
+    				<RotateTransform/>
+    				<TranslateTransform/>
+    			</TransformGroup>
+    		</Path.RenderTransform>
+    	</Path>
+    	<TextBox Grid.Column="4" HorizontalAlignment="Left" Height="48" Margin="11,36,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="564" BorderBrush="Black" Style="{StaticResource TextBoxStyle2}" FontSize="18.667" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+    	<Button Content="SEARCH" Grid.Column="6" HorizontalAlignment="Left" Height="54" Margin="129,33,-3,0" Grid.Row="3" VerticalAlignment="Top" Width="150" Background="#FFEC8100" BorderBrush="{x:Null}" Style="{StaticResource ButtonStyle1}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+    	<Rectangle Fill="#FFDABE0B" HorizontalAlignment="Left" Height="4" Margin="32,30,0,0" VerticalAlignment="Top" Width="750" Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="6"/>
+    	<TextBlock Grid.Column="4" HorizontalAlignment="Left" Height="21" Margin="0,9,0,0" Grid.Row="6" TextWrapping="Wrap" Text="Search by Categories " VerticalAlignment="Top" Width="201" Foreground="Black" FontSize="16" FontWeight="Bold"/>
+    	<Path Data="M222,438 L283.333,477 L283.833,437.333 z" Fill="#FF185485" HorizontalAlignment="Left" Height="40.667" Grid.Row="5" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="62.833" Margin="239.5,10.833,-230.333,0" Grid.RowSpan="2"/>
+    	<Rectangle Grid.Column="4" Fill="#FF185485" HorizontalAlignment="Left" Height="69" Margin="35,62,0,0" Grid.Row="6" VerticalAlignment="Top" Width="154"/>
+    	<Rectangle Grid.Column="4" Fill="#FF185485" HorizontalAlignment="Left" Height="69" Margin="35,144,0,0" Grid.Row="6" VerticalAlignment="Top" Width="154"/>
+    	<Rectangle Grid.Column="4" Fill="#FF185485" HorizontalAlignment="Left" Height="69" Margin="208,62,0,0" Grid.Row="6" VerticalAlignment="Top" Width="152" Grid.ColumnSpan="2"/>
+    	<Rectangle Grid.Column="4" Fill="#FF185485" HorizontalAlignment="Left" Height="69" Margin="208,144,0,0" Grid.Row="6" VerticalAlignment="Top" Width="152" Grid.ColumnSpan="2"/>
+    	<Rectangle Grid.Column="5" Fill="#FF185485" HorizontalAlignment="Left" Height="69" Margin="154,62,0,0" Grid.Row="6" VerticalAlignment="Top" Width="154" Grid.ColumnSpan="2"/>
+    	<Rectangle Grid.Column="5" Fill="#FF185485" HorizontalAlignment="Left" Height="69" Margin="154,144,0,0" Grid.Row="6" VerticalAlignment="Top" Width="154" Grid.ColumnSpan="2"/>
+    	<Rectangle Grid.Column="6" Fill="#FF185485" HorizontalAlignment="Left" Height="69" Margin="84,62,0,0" Grid.Row="6" VerticalAlignment="Top" Width="154" Grid.ColumnSpan="2"/>
+    	<Rectangle Grid.Column="6" Fill="#FF185485" HorizontalAlignment="Left" Height="69" Margin="84,144,0,0" Grid.Row="6" VerticalAlignment="Top" Width="154" Grid.ColumnSpan="2"/>
+
+    </Grid>
+</Page>
